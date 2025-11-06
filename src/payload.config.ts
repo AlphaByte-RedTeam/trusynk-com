@@ -27,6 +27,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     idType: 'uuid',
+    schemaName: 'dtwts',
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
