@@ -27,6 +27,9 @@
   --color-gray-10: #838383;
   --color-gray-11: #646464;
   --color-gray-12: #202020;
+
+  --font-playfair-display: 'Playfair Display', serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -105,7 +108,7 @@ img {
   display: block;
 }
 
-h1 {
+/* h1 {
   margin: 40px 0;
   font-size: 64px;
   line-height: 70px;
@@ -126,7 +129,7 @@ h1 {
     font-size: 32px;
     line-height: 32px;
   }
-}
+} */
 
 p {
   margin: 24px 0;
@@ -176,9 +179,9 @@ svg {
     justify-content: center;
     flex-grow: 1;
 
-    h1 {
+    /* h1 {
       text-align: center;
-    }
+    } */
   }
 
   .links {
