@@ -1,0 +1,48 @@
+import React from 'react'
+import { H1, LinkP, P } from './typography'
+import { Button } from './ui/button'
+import { ArrowRight, Info, Rocket } from 'lucide-react'
+import Link from 'next/link'
+import { Badge } from './ui/badge'
+
+export default function Hero(): React.ReactElement {
+  return (
+    <section className="relative flex items-center justify-center overflow-hidden">
+      <div className="flex flex-col items-center justify-center text-center md:w-2xl">
+        <Badge variant="default" className="bg-yellow-400 text-yellow-900">
+          <Info /> Trusynk is still on development.
+        </Badge>
+        <H1>
+          <span className="font-light italic">Networking Shouldn&apos;t Feel </span>
+          <span className="font-normal italic font-playfair-display">Outdated.</span>
+        </H1>
+        <P className="font-normal">
+          <strong>Trusynk</strong> is your gateway to modern networking. Smart, sustainable, and
+          effortless way to share your identity through tap, scan, or link.
+        </P>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+          <Button asChild className="capitalize rounded-4xl w-64 max-w-2xl md:w-auto">
+            <Link
+              href="https://forms.gle/KvckQpHKZu3zWQzf9"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Rocket /> Get your card
+            </Link>
+          </Button>
+          <Button variant="outline" className="capitalize rounded-4xl max-w-2xl w-64 md:w-auto">
+            learn more <ArrowRight />
+          </Button>
+        </div>
+        <P className="font-normal text-xs">
+          <span className="text-gray-10">
+            Be the first to experience the future of smart networking.{' '}
+          </span>
+          <LinkP href="" className="text-xs font-normal text-brand-11">
+            Join waitlist
+          </LinkP>
+        </P>
+      </div>
+    </section>
+  )
+}
