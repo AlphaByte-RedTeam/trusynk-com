@@ -18,8 +18,9 @@ const playfairDisplay = Playfair_Display({
 })
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description:
+    'Trusynkis your gateway to modern networking. Smart, sustainable, and effortless way to share your identity through tap, scan, or link.',
+  title: 'Trusynk | Your Gateway to Modern Networking',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
