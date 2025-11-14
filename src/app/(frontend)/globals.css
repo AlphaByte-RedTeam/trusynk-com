@@ -2,18 +2,18 @@
 @import 'tw-animate-css';
 
 @theme {
-  --color-blue-1: #fcfdfe;
-  --color-blue-2: #f6f9ff;
-  --color-blue-3: #ebf2ff;
-  --color-blue-4: #ddeaff;
-  --color-blue-5: #cbe0ff;
-  --color-blue-6: #b7d2ff;
-  --color-blue-7: #9fc0ff;
-  --color-blue-8: #7da6f9;
-  --color-blue-9: #002fbd;
-  --color-blue-10: #0013a9;
-  --color-blue-11: #275ad4;
-  --color-blue-12: #162d62;
+  --color-brand-1: #fcfdfe;
+  --color-brand-2: #f6f9ff;
+  --color-brand-3: #ebf2ff;
+  --color-brand-4: #ddeaff;
+  --color-brand-5: #cbe0ff;
+  --color-brand-6: #b7d2ff;
+  --color-brand-7: #9fc0ff;
+  --color-brand-8: #7da6f9;
+  --color-brand-9: #002fbd;
+  --color-brand-10: #0013a9;
+  --color-brand-11: #275ad4;
+  --color-brand-12: #162d62;
 
   --color-gray-1: #fcfcfc;
   --color-gray-2: #f9f9f9;
