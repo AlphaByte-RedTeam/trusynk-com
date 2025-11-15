@@ -7,7 +7,7 @@ import { Badge } from './ui/badge'
 
 export default function Hero(): React.ReactElement {
   return (
-    <section className="relative flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative flex items-center justify-center overflow-hidden">
       <div className="flex flex-col items-center justify-center text-center md:w-2xl">
         <Badge variant="default" className="bg-yellow-400 text-yellow-900">
           <Info /> Trusynk is still on development.
