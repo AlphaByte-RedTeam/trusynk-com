@@ -13,11 +13,22 @@ type LinkTypographyProps = TypographyProps & {
 
 export const H1 = ({ children, className }: TypographyProps) => {
   return (
-    <h1
-      className={cn('text-pretty md:text-[64px] text-brand-11 md:leading-16 font-inter', className)}
-    >
+    <h1 className={cn('text-pretty text-[64px] text-brand-11 leading-16 font-inter', className)}>
       {children}
     </h1>
+  )
+}
+
+export const H2 = ({ children, className }: TypographyProps) => {
+  return (
+    <h2
+      className={cn(
+        'text-pretty text-3xl text-brand-11 leading-4 font-inter tracking-tight font-bold',
+        className,
+      )}
+    >
+      {children}
+    </h2>
   )
 }
 
