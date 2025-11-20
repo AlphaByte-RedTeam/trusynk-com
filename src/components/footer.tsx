@@ -6,6 +6,7 @@ import { DownloadIcon } from 'lucide-react'
 import { useId } from 'react'
 import { FOOTER_MENU } from '@/data/footer-menu'
 import { HEADER_MENU } from '@/data/header-menu'
+import Socmed from './socmed'
 
 const Footer = () => {
   const id = useId()
@@ -14,26 +15,23 @@ const Footer = () => {
     <footer className="p-4 bg-brand-1 w-full mt-24">
       <div className="flex flex-col p-8 h-96 bg-brand-9 rounded-md justify-between items-center">
         <div className="w-full justify-between items-start flex flex-col md:flex-row">
-          <div className="flex flex-col w-64 gap-2">
+          <div className="flex flex-col w-64 gap-2 overflow-hidden">
             <Logo isWhite />
             <P className="text-xs text-white">Trusynk — Beyond Networking.</P>
+            <Socmed />
           </div>
           <div className="flex md:flex-row flex-col gap-24">
             <div className="flex flex-col gap-2 justify-center items-start">
               {HEADER_MENU.map((item) => (
-                <Button size="link" asChild variant="link">
-                  <Link key={`${id}-${item.label}`} href={item.href}>
-                    {item.label}
-                  </Link>
+                <Button key={`${id}-${item.label}`} size="link" asChild variant="link">
+                  <Link href={item.href}>{item.label}</Link>
                 </Button>
               ))}
             </div>
             <div className="flex flex-col gap-2 justify-center items-start">
               {FOOTER_MENU.map((item) => (
-                <Button size="link" asChild variant="link">
-                  <Link key={`${id}-${item.label}`} href={item.href}>
-                    {item.label}
-                  </Link>
+                <Button key={`${id}-${item.label}`} size="link" asChild variant="link">
+                  <Link href={item.href}>{item.label}</Link>
                 </Button>
               ))}
             </div>
