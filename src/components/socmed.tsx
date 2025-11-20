@@ -1,0 +1,53 @@
+import Link from 'next/link'
+import { Button } from './ui/button'
+import { SiInstagram, SiThreads, SiTiktok, SiWhatsapp, SiX } from '@icons-pack/react-simple-icons'
+import { Mail } from 'lucide-react'
+import Image from 'next/image'
+
+const Socmed = () => {
+  return (
+    <div className="flex flex-row w-full justify-start items-start left-0">
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="mailto:support@trusynk.com" target="_blank" rel="noopener noreferrer">
+          <Mail />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link
+          href="https://www.linkedin.com/company/trusynk"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image src="/linked-in.png" width={20} height={20} alt="LinkedIn Logo" />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="https://www.instagram.com/trusynk/" target="_blank" rel="noopener noreferrer">
+          <SiInstagram />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="https://wa.me/628886175670/" target="_blank" rel="noopener noreferrer">
+          <SiWhatsapp />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="https://www.tiktok.com/@trusynk" target="_blank" rel="noopener noreferrer">
+          <SiTiktok />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="https://www.threads.com/@trusynk" target="_blank" rel="noopener noreferrer">
+          <SiThreads />
+        </Link>
+      </Button>
+      <Button asChild size="icon" variant="ghost" className="text-white text-xs">
+        <Link href="https://x.com/trusynk" target="_blank" rel="noopener noreferrer">
+          <SiX />
+        </Link>
+      </Button>
+    </div>
+  )
+}
+
+export default Socmed
