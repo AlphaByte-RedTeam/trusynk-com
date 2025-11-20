@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Socmed = () => {
   return (
-    <div className="flex flex-row w-full justify-start items-start left-0">
+    <div className="grid grid-cols-4 md:flex md:flex-row w-fit md:w-full justify-start items-start left-0">
       <Button asChild size="icon" variant="ghost" className="text-white text-xs">
         <Link href="mailto:support@trusynk.com" target="_blank" rel="noopener noreferrer">
           <Mail />
