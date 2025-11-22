@@ -1,0 +1,188 @@
+'use client'
+
+import { useForm } from 'react-hook-form'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '../ui/dialog'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
+import { Button } from '../ui/button'
+import z from 'zod'
+import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { LinkP, P } from '../typography'
+import { Input } from '../ui/input'
+import { Checkbox } from '../ui/checkbox'
+import { Label } from '../ui/label'
+import { Spinner } from '../ui/spinner'
+import { toast } from 'sonner'
+import { supabase } from '@/lib/supabase/client'
+
+const allowedChars = /^[a-zA-Z ]+$/
+
+const formSchema = z.object({
+  name: z
+    .string()
+    .min(3, { error: 'Min. 3 characters' })
+    .max(255, { error: 'Max. 255 characters' })
+    .regex(allowedChars, { error: 'Only letters and spaces are allowed' }),
+  email: z
+    .email({ error: 'Invalid email address' })
+    .min(7, { error: 'Min. 7 characters' })
+    .max(255, 'Max. 255 characters'),
+  isChecked: z.boolean().refine((val) => val === true, {
+    error: 'You must accept the privacy policy',
+  }),
+})
+
+const EarlyAccess = () => {
+  const [open, setOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      isChecked: false,
+    },
+    mode: 'onChange',
+  })
+
+  const isFormValid = form.formState.isValid
+
+  const submitForm = async (data: z.infer<typeof formSchema>) => {
+    try {
+      setIsLoading(true)
+
+      const { error } = await supabase.from('early_access_forms').insert({
+        name: data.name,
+        email: data.email,
+        is_checked: data.isChecked,
+      })
+
+      if (error) throw error
+
+      toast.success("You're in! Early access secured. 🚀", {
+        description: "Thanks — you're in. Follow us on LinkedIn for updates. Big things coming.",
+      })
+
+      form.reset()
+      setTimeout(() => {
+        setOpen(false)
+        setIsLoading(false)
+      }, 1500)
+    } catch (error) {
+      console.error('Database Error', error)
+      toast.error('Submission Failed', {
+        description: 'Submission failed. Please try again later.',
+      })
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button variant="outline">Join Early Access</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              Level up your networking game - Join our Early Access program!
+            </DialogTitle>
+            <DialogDescription>
+              Unlock new networking opportunities by joining our Early Access program. Spot limited!
+            </DialogDescription>
+          </DialogHeader>
+          <Form {...form}>
+            <form
+              id="early-access-form"
+              onSubmit={form.handleSubmit(submitForm)}
+              className="flex flex-col gap-4"
+            >
+              <div className="flex flex-col gap-2">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel className="capitalize">Name</FormLabel>
+                      <FormControl>
+                        <Input required placeholder="Andrew Virya Victorio" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="w-full">
+                      <FormLabel className="capitalize">Email</FormLabel>
+                      <FormControl>
+                        <Input required placeholder="andrew@trusynk.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormField
+                control={form.control}
+                name="isChecked"
+                render={({ field }) => (
+                  <FormItem className="flex flex-row items-start align-middle justify-start gap-2">
+                    <FormControl>
+                      <Checkbox
+                        required
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        id="accept-privacy-policy"
+                        defaultChecked
+                        {...form.register('isChecked')}
+                      />
+                    </FormControl>
+                    <div className="grid gap-2">
+                      <Label htmlFor="accept-privacy-policy" className="text-brand-10 text-xs">
+                        Accept Privacy Policy
+                      </Label>
+                      <P className="text-xs text-gray-10">
+                        I agree to receive emails from Trusynk and accept the{' '}
+                        <LinkP className="text-xs" href="/privacy-policy">
+                          Privacy Policy.
+                        </LinkP>
+                      </P>
+                    </div>
+                  </FormItem>
+                )}
+              />
+              <FormMessage>{form.formState.errors.isChecked?.message}</FormMessage>
+            </form>
+          </Form>
+          <DialogFooter>
+            <Button type="submit" form="early-access-form" disabled={!isFormValid || isLoading}>
+              {isLoading ? (
+                <>
+                  <Spinner />
+                  <span>Securing your spot… just a sec.</span>
+                </>
+              ) : (
+                'Sign Me Up'
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  )
+}
+
+export default EarlyAccess
