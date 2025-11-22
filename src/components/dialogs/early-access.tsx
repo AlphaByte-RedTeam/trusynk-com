@@ -22,6 +22,7 @@ import { Label } from '../ui/label'
 import { Spinner } from '../ui/spinner'
 import { toast } from 'sonner'
 import { supabase } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
 
 const allowedChars = /^[a-zA-Z ]+$/
 
@@ -43,6 +44,7 @@ const formSchema = z.object({
 const EarlyAccess = () => {
   const [open, setOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -72,10 +74,14 @@ const EarlyAccess = () => {
         description: "Thanks — you're in. Follow us on LinkedIn for updates. Big things coming.",
       })
 
+      const firstName = data.name.split(' ')[0]
+
       form.reset()
       setTimeout(() => {
         setOpen(false)
         setIsLoading(false)
+
+        router.push(`/welcome?name=${encodeURIComponent(firstName)}`)
       }, 1500)
     } catch (error) {
       console.error('Database Error', error)
@@ -115,7 +121,7 @@ const EarlyAccess = () => {
                     <FormItem className="w-full">
                       <FormLabel className="capitalize">Name</FormLabel>
                       <FormControl>
-                        <Input required placeholder="Andrew Virya Victorio" {...field} />
+                        <Input placeholder="Andrew Virya Victorio" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -128,7 +134,7 @@ const EarlyAccess = () => {
                     <FormItem className="w-full">
                       <FormLabel className="capitalize">Email</FormLabel>
                       <FormControl>
-                        <Input required placeholder="andrew@trusynk.com" {...field} />
+                        <Input placeholder="andrew@trusynk.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -142,12 +148,10 @@ const EarlyAccess = () => {
                   <FormItem className="flex flex-row items-start align-middle justify-start gap-2">
                     <FormControl>
                       <Checkbox
-                        required
                         checked={field.value}
                         onCheckedChange={field.onChange}
                         id="accept-privacy-policy"
                         defaultChecked
-                        {...form.register('isChecked')}
                       />
                     </FormControl>
                     <div className="grid gap-2">
