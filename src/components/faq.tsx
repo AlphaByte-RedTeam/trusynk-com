@@ -11,7 +11,7 @@ const FAQ = () => {
       id="faq"
       className="relative p-8 md:p-16 w-full md:w-2xl h-fit flex flex-col items-center justify-center overflow-hidden gap-4"
     >
-      <H2>Got questions? We&apos;ve got you.</H2>
+      <H2 className="text-center">Got questions? We&apos;ve got you.</H2>
       <P className="text-center text-sm">
         Find clear, friendly answers to help you get the most out of Trusynk. No pressure, no
         confusion — just simple guidance to keep your networking flow smooth. And if you ever need
