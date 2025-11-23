@@ -1,7 +1,10 @@
 import { FAQ_ITEMS } from '@/data/faq-items'
-import { H2, P } from './typography'
+import { H2, H3, P } from './typography'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
 import { useId } from 'react'
+import { Button } from './ui/button'
+import Link from 'next/link'
+import { ArrowRight, Mail } from 'lucide-react'
 
 const FAQ = () => {
   const id = useId()
@@ -19,12 +22,27 @@ const FAQ = () => {
       </P>
       <Accordion type="single" collapsible className="w-full">
         {FAQ_ITEMS.slice(0, 7).map((item, index) => (
-          <AccordionItem key={`${id}-${index}`} value={`${id}-${index}`}>
+          <AccordionItem key={`${id}`} value={`${id}-${index}`}>
             <AccordionTrigger>{item.question}</AccordionTrigger>
             <AccordionContent>{item.answer}</AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
+      <H3>Have more questions?</H3>
+      <div className="flex flex-row gap-4">
+        <Button asChild variant="outline">
+          <Link href="mailto:support@trusynk.com">
+            <Mail />
+            Contact Technical Support
+          </Link>
+        </Button>
+        <Button asChild variant="secondary">
+          <Link href="/faq">
+            Find more answers here
+            <ArrowRight />
+          </Link>
+        </Button>
+      </div>
     </section>
   )
 }
