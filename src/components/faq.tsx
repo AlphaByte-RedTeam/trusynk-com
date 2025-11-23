@@ -5,9 +5,11 @@ import { useId } from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
+import { topFAQs } from '@/lib/faq-utils'
 
 const FAQ = () => {
   const id = useId()
+  const topFaqs = topFAQs(FAQ_ITEMS)
 
   return (
     <section
@@ -21,7 +23,7 @@ const FAQ = () => {
         more help, we&apos;re always here for you.
       </P>
       <Accordion type="single" collapsible className="w-full">
-        {FAQ_ITEMS.slice(0, 7).map((item, index) => (
+        {topFaqs.map((item, index) => (
           <AccordionItem key={`${id}`} value={`${id}-${index}`}>
             <AccordionTrigger>{item.question}</AccordionTrigger>
             <AccordionContent>{item.answer}</AccordionContent>
