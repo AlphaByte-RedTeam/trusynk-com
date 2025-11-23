@@ -42,7 +42,22 @@ const CategorizedFAQ = () => {
                       <AccordionTrigger className="text-brand-12">{item.question}</AccordionTrigger>
                       <AccordionContent className="text-gray-11 flex flex-col items-start gap-4 justify-start">
                         {item.answer}
-                        <Feedback contentType="faq" question="Was this conversation helpful?" />
+                        <Feedback
+                          contentType="faq"
+                          contentId={item.id}
+                          question="Was this answer helpful?"
+                          positiveTitle="Glad we could help!"
+                          positiveDescription="What made this answer particularly helpful? Your feedback helps us create better FAQs."
+                          negativeTitle="Help us improve this answer"
+                          negativeDescription="What information was missing or unclear? Your feedback helps us make our FAQs more useful."
+                          positiveSuccessMessage="Thanks for letting us know this was helpful. We'll keep improving our FAQs!"
+                          negativeSuccessMessage="Thank you for helping us improve. We'll work on making this answer clearer!"
+                          metadata={{
+                            category: category.name,
+
+                            question: item.question,
+                          }}
+                        />
                       </AccordionContent>
                     </AccordionItem>
                   ))}
