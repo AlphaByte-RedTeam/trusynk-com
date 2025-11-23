@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -39,6 +40,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           {children}
           <Footer />
           <Toaster />
+          <SpeedInsights />
         </main>
       </body>
     </html>
