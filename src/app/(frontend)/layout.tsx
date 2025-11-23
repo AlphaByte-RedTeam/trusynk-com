@@ -3,6 +3,8 @@ import React from 'react'
 import './globals.css'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -34,7 +36,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         className={`${inter.className} ${playfairDisplay.className} bg-brand-1 h-screen min-w-screen overflow-x-hidden scroll-smooth`}
       >
         <main>
+          <Header />
           {children}
+          <Footer />
           <Toaster />
         </main>
       </body>
