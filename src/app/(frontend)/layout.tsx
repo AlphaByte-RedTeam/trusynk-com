@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/sonner'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-NGKWTGTQ" />
       <body
         className={`${inter.className} ${playfairDisplay.className} bg-brand-1 h-screen min-w-screen overflow-x-hidden scroll-smooth`}
       >
