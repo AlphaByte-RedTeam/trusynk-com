@@ -5,10 +5,10 @@ const nextConfig = {
   // Cache Components temporarily disabled due to PayloadCMS compatibility issues
   // TODO: Re-enable when PayloadCMS supports Next.js 16 Cache Components
   // cacheComponents: true,
-  
+
   // Empty turbopack config to silence webpack/turbopack warnings
   turbopack: {},
-  
+
   // Your Next.js config here
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
