@@ -23,7 +23,7 @@ export const H2 = ({ children, className }: TypographyProps) => {
   return (
     <h2
       className={cn(
-        'text-pretty text-3xl text-brand-11 md:leading-4 font-inter tracking-tight font-bold',
+        'text-pretty text-3xl text-brand-11 font-inter tracking-tight font-bold',
         className,
       )}
     >
